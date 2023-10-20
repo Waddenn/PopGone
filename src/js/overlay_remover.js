@@ -1,5 +1,3 @@
-const isDebugMode = false;
-
 const utils = {
   hideElement(element) {
     element.style.display = "none";
@@ -29,7 +27,7 @@ const utils = {
   },
 };
 
-function overlayRemover(debug, utils) {
+function overlayRemover(utils) {
   function hidePotentialOverlayElements(element) {
     const thresholdZIndex = utils.getZIndex(element);
     [...element.parentNode.children].forEach((child) => {
@@ -68,7 +66,6 @@ function overlayRemover(debug, utils) {
     );
 
     if (elementsWithZIndex.length === 0) {
-      if (debug) console.log("No overlay detected.");
       return;
     }
 
@@ -85,7 +82,7 @@ function overlayRemover(debug, utils) {
   };
 }
 
-const overlayRemoverInstance = overlayRemover(isDebugMode, utils);
+const overlayRemoverInstance = overlayRemover(utils);
 
 function overlayRemoverRun() {
   overlayRemoverInstance.run();
